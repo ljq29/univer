@@ -10,7 +10,7 @@
 
 ## 安装
 
-从 [GitHub Releases](https://github.com/ljq29/siyuan-univer/releases/latest) 下载 `univer.zip`，将其解压到思源工作空间的 `data/plugins/univer/`，然后重新加载思源并在“设置 → 插件”中启用“Univer表格”。每个需要使用表格的设备都要安装并启用插件。
+从 [GitHub Releases](https://github.com/ljq29/univer/releases/latest) 下载 `univer.zip`，将其解压到思源工作空间的 `data/plugins/univer/`，然后重新加载思源并在“设置 → 插件”中启用“Univer表格”。每个需要使用表格的设备都要安装并启用插件。
 
 ## 从旧定制版迁移
 
@@ -33,6 +33,6 @@ pnpm build
 - 推送与 `package.json`、`plugin.json` 版本一致的 `v*` 标签时，自动构建、打包并发布 GitHub Release。
 
 ```bash
-git tag v0.0.91
-git push origin v0.0.91
+git tag v0.0.92
+git push origin v0.0.92
 ```

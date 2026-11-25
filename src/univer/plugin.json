@@ -1,8 +1,8 @@
 {
   "name": "univer",
   "author": "崮生、antior",
-  "url": "https://github.com/ljq29/siyuan-univer",
-  "version": "0.0.91",
+  "url": "https://github.com/ljq29/univer",
+  "version": "0.0.92",
   "minAppVersion": "2.10.3",
   "backends": [
     "all"
@@ -25,6 +25,8 @@
     "zh_CN": "README.md",
     "zh_TW": "README.md"
   },
+  "icon": "icon.png",
+  "preview": "preview.png",
   "keywords": [
     "univer",
     "sheet",

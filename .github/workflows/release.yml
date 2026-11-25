@@ -42,15 +42,18 @@ jobs:
           test -f dist/univer/plugin.json
           test -f dist/univer/index.js
           test -f dist/univer/es/univer.js
+          test -f dist/univer/index.css
           cd dist/univer
           zip -r ../../univer.zip .
+          zip -r ../../package.zip .
           cd ../..
           unzip -t univer.zip
+          unzip -t package.zip
 
       - name: Create or update GitHub Release
         run: |
           if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
-            gh release upload "${GITHUB_REF_NAME}" univer.zip --clobber
+            gh release upload "${GITHUB_REF_NAME}" univer.zip package.zip --clobber
           else
-            gh release create "${GITHUB_REF_NAME}" univer.zip --generate-notes
+            gh release create "${GITHUB_REF_NAME}" univer.zip package.zip --generate-notes
           fi
