@@ -122,7 +122,7 @@ window.addEventListener('keydown', (event) => {
     || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey
     || isCellEditingTarget(event.target)
     || !(event.target instanceof Element)) return;
-  const app = document.getElementById('univer-siyuan-plugin--app');
+  const app = document.getElementById('univer--app');
   if ((!app?.contains(event.target) && event.target.getAttribute('data-u-comp') !== 'editor')) return;
   const cell = univerAPI.getActiveWorkbook()?.getActiveSheet().getSelection()?.getCurrentCell();
   if (!shouldBlockArrowKey(event.key, cell)) return;
@@ -168,7 +168,7 @@ univer.registerPlugin(UniverFormulaEnginePlugin, {
 });
 
 univer.registerPlugin(UniverUIPlugin, {
-  container: 'univer-siyuan-plugin--app',
+  container: 'univer--app',
 });
 
 univer.registerPlugin(UniverDocsPlugin, {
@@ -267,11 +267,11 @@ async function main() {
     }).catch(async (error) => {
       hasPendingChanges = true;
       lastSaveError = error;
-      console.error('[univer-siyuan-plugin] Failed to save workbook', error);
+      console.error('[univer] Failed to save workbook', error);
       try {
         await api.pushErrMsg(`Univer 表格保存失败：${errorMessage(error)}`);
       } catch (notifyError) {
-        console.error('[univer-siyuan-plugin] Failed to show save error', notifyError);
+        console.error('[univer] Failed to show save error', notifyError);
       }
     });
     return savePromise;
@@ -292,15 +292,15 @@ async function main() {
     return save();
   };
 
-  const status = requireElement<HTMLSpanElement>('#univer-siyuan-plugin--status');
-  const font = requireElement<HTMLSelectElement>('#univer-siyuan-plugin--font');
-  const fileInput = requireElement<HTMLInputElement>('#univer-siyuan-plugin--file');
-  const groupMenu = requireElement<HTMLDetailsElement>('#univer-siyuan-plugin--group-menu');
-  const app = requireElement<HTMLDivElement>('#univer-siyuan-plugin--app');
+  const status = requireElement<HTMLSpanElement>('#univer--status');
+  const font = requireElement<HTMLSelectElement>('#univer--font');
+  const fileInput = requireElement<HTMLInputElement>('#univer--file');
+  const groupMenu = requireElement<HTMLDetailsElement>('#univer--group-menu');
+  const app = requireElement<HTMLDivElement>('#univer--app');
   const setBusy = (busy: boolean) => {
     app.inert = busy;
     document.querySelectorAll<HTMLButtonElement | HTMLSelectElement>(
-      '#univer-siyuan-plugin--tools button, #univer-siyuan-plugin--tools select',
+      '#univer--tools button, #univer--tools select',
     ).forEach((control) => {
       control.disabled = busy;
     });
@@ -312,11 +312,11 @@ async function main() {
       status.textContent = await action();
     } catch (error) {
       status.textContent = '操作失败';
-      console.error('[univer-siyuan-plugin] Action failed', error);
+      console.error('[univer] Action failed', error);
       try {
         await api.pushErrMsg(`Univer 操作失败：${errorMessage(error)}`);
       } catch (notifyError) {
-        console.error('[univer-siyuan-plugin] Failed to show action error', notifyError);
+        console.error('[univer] Failed to show action error', notifyError);
       }
     } finally {
       setBusy(false);
@@ -407,7 +407,7 @@ async function main() {
     font.value = '';
     scheduleSave();
   });
-  requireElement<HTMLButtonElement>('#univer-siyuan-plugin--import').addEventListener('click', () => {
+  requireElement<HTMLButtonElement>('#univer--import').addEventListener('click', () => {
     fileInput.value = '';
     fileInput.click();
   });
@@ -431,7 +431,7 @@ async function main() {
       return 'Excel 导入并保存完成（仅第一个工作表）';
     });
   });
-  requireElement<HTMLButtonElement>('#univer-siyuan-plugin--export').addEventListener('click', () => {
+  requireElement<HTMLButtonElement>('#univer--export').addEventListener('click', () => {
     void runAction('正在导出 Excel…', async () => {
       const workbook = activeWorkbook();
       const snapshot = workbook.save();
@@ -468,10 +468,10 @@ async function main() {
   });
 }
 void main().catch(async (error) => {
-  console.error('[univer-siyuan-plugin] Failed to initialize', error);
+  console.error('[univer] Failed to initialize', error);
   try {
     await api.pushErrMsg(`Univer 初始化失败：${errorMessage(error)}`);
   } catch (notifyError) {
-    console.error('[univer-siyuan-plugin] Failed to show initialization error', notifyError);
+    console.error('[univer] Failed to show initialization error', notifyError);
   }
 });

@@ -2,6 +2,7 @@
 .vscode
 .DS_Store
 package.zip
+univer.zip
 node_modules
 dev
 dist

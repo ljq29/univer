@@ -24,7 +24,7 @@ export default class UniverPlugin extends SiyuanPlugin {
             kramdownIframe({
               updated,
               id,
-              src: `/plugins/univer-siyuan-plugin/univer.html?id=${id}&type=sheet`,
+              src: `/plugins/univer/univer.html?id=${id}&type=sheet`,
             }),
             undefined,
             e.detail.blockElements[0]?.dataset.nodeId,
@@ -42,7 +42,7 @@ export default class UniverPlugin extends SiyuanPlugin {
         protyle.insert(
           `<div data-node-id="${id}" data-type="NodeIFrame" class="iframe" updated="${updated}">\
 <div class="iframe-content">\
-<iframe sandbox="allow-forms allow-presentation allow-same-origin allow-scripts allow-modals allow-popups allow-downloads" src="/plugins/univer-siyuan-plugin/univer.html?id=${id}&amp;type=sheet" data-src="" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 1028px; height: 438px;"></iframe><span class="protyle-action__drag" contenteditable="false"></span></div><div class="protyle-attr" contenteditable="false">&ZeroWidthSpace;</div></div>`,
+<iframe sandbox="allow-forms allow-presentation allow-same-origin allow-scripts allow-modals allow-popups allow-downloads" src="/plugins/univer/univer.html?id=${id}&amp;type=sheet" data-src="" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 1028px; height: 438px;"></iframe><span class="protyle-action__drag" contenteditable="false"></span></div><div class="protyle-attr" contenteditable="false">&ZeroWidthSpace;</div></div>`,
           true,
           true,
         );
@@ -53,7 +53,7 @@ export default class UniverPlugin extends SiyuanPlugin {
         //   kramdownIframe({
         //     updated,
         //     id,
-        //     src: `/plugins/univer-siyuan-plugin/univer.html?id=${id}&type=sheet`,
+        //     src: `/plugins/univer/univer.html?id=${id}&type=sheet`,
         //   }),
         //   undefined,
         //   ,
@@ -71,7 +71,7 @@ export default class UniverPlugin extends SiyuanPlugin {
       // 检测复制粘贴等情况
       if (event.type === "llej-plugin-rpc-univer-check-id") {
         const iframeList = document.querySelectorAll<HTMLIFrameElement>(
-          `iframe[src*="univer-siyuan-plugin/univer.html?id=${event.blockId}"]`,
+          `iframe[src*="univer/univer.html?id=${event.blockId}"]`,
         );
         for (const iframe of iframeList) {
           const block = iframe.closest<HTMLDivElement>('[data-type="NodeIFrame"]')!;
@@ -104,7 +104,7 @@ export default class UniverPlugin extends SiyuanPlugin {
         const payload = event.payload;
         const iframeList = [
           ...document.querySelectorAll(
-            `iframe[src*="univer-siyuan-plugin/univer.html?id=${payload.blockId}"]`,
+            `iframe[src*="univer/univer.html?id=${payload.blockId}"]`,
           ),
         ] as HTMLIFrameElement[];
         let reply: apiRpcReply;
@@ -134,7 +134,7 @@ export default class UniverPlugin extends SiyuanPlugin {
     const scanForIframes = () => {
       this.resizeScanFrame = 0;
       document
-        .querySelectorAll<HTMLIFrameElement>('iframe[src*="univer-siyuan-plugin/univer.html"]')
+        .querySelectorAll<HTMLIFrameElement>('iframe[src*="univer/univer.html"]')
         .forEach(installResizeHandle);
     };
     this.resizeObserver?.disconnect();
@@ -170,7 +170,7 @@ export default class UniverPlugin extends SiyuanPlugin {
   }
 }
 
-const resizeHandleClass = "univer-siyuan-plugin--resize-handle";
+const resizeHandleClass = "univer--resize-handle";
 
 const installResizeHandle = (iframe: HTMLIFrameElement) => {
   const block = iframe.closest<HTMLElement>('[data-type="NodeIFrame"]');

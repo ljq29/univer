@@ -35,7 +35,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: univer-siyuan-plugin-build
-          path: dist/univer-siyuan-plugin
+          name: univer-build
+          path: dist/univer
           if-no-files-found: error
           retention-days: 7

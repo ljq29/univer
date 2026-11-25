@@ -7,8 +7,8 @@ export default defineConfig(({ mode }) => {
   const format = process.env.format === 'esm' ? 'esm' : 'cjs';
 
   return {
-    base: mode === 'development' ? '/' : '/plugins/univer-siyuan-plugin/',
-    publicDir: 'src/univer-siyuan-plugin',
+    base: mode === 'development' ? '/' : '/plugins/univer/',
+    publicDir: 'src/univer',
     resolve: {
       alias: {
         '~': resolve(import.meta.dirname, 'src'),
@@ -39,10 +39,10 @@ export default defineConfig(({ mode }) => {
     ],
     build: {
       lib: {
-        entry: `src/univer-siyuan-plugin/${scriptFile}`,
-        name: 'univer-siyuan-plugin',
+        entry: `src/univer/${scriptFile}`,
+        name: 'univer',
       },
-      outDir: 'dist/univer-siyuan-plugin',
+      outDir: 'dist/univer',
       emptyOutDir: process.env.emptyOutDir !== '0',
       sourcemap: false,
       minify: true,

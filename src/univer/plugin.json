@@ -1,0 +1,41 @@
+{
+  "name": "univer",
+  "author": "崮生、antior",
+  "url": "https://github.com/ljq29/siyuan-univer",
+  "version": "0.0.91",
+  "minAppVersion": "2.10.3",
+  "backends": [
+    "all"
+  ],
+  "frontends": [
+    "all"
+  ],
+  "displayName": {
+    "default": "Univer",
+    "zh_CN": "Univer表格",
+    "zh_TW": "Univer表格"
+  },
+  "description": {
+    "default": "Embeddable Univer spreadsheets with Excel import and export",
+    "zh_CN": "在文档中嵌入可同步的 Univer 电子表格，支持 Excel 导入导出",
+    "zh_TW": "在文件中嵌入可同步的 Univer 電子表格，支援 Excel 匯入匯出"
+  },
+  "readme": {
+    "default": "README.md",
+    "zh_CN": "README.md",
+    "zh_TW": "README.md"
+  },
+  "keywords": [
+    "univer",
+    "sheet",
+    "excel",
+    "xls",
+    "spreadsheet"
+  ],
+  "funding": {
+    "custom": [
+      "https://afdian.com/@llej0"
+    ]
+  },
+  "disabledInPublish": true
+}

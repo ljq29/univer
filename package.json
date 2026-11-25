@@ -1,14 +1,14 @@
 {
-  "name": "univer-siyuan-plugin",
-  "version": "0.0.90",
+  "name": "siyuan-univer",
+  "version": "0.0.91",
   "private": true,
   "type": "module",
   "description": "在思源笔记中嵌入可同步的 Univer 电子表格",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ljq29/univer-siyuan-plugin.git"
+    "url": "https://github.com/ljq29/siyuan-univer.git"
   },
-  "author": "崮生",
+  "author": "崮生、antior",
   "license": "MIT",
   "scripts": {
     "dev": "vite",

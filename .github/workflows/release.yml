@@ -32,25 +32,25 @@ jobs:
       - name: Verify tag matches plugin version
         run: |
           test "${GITHUB_REF_NAME}" = "v$(node -p "require('./package.json').version")"
-          test "$(node -p "require('./package.json').version")" = "$(node -p "require('./src/univer-siyuan-plugin/plugin.json').version")"
+          test "$(node -p "require('./package.json').version")" = "$(node -p "require('./src/univer/plugin.json').version")"
 
       - name: Build plugin
         run: pnpm build
 
       - name: Package plugin
         run: |
-          test -f dist/univer-siyuan-plugin/plugin.json
-          test -f dist/univer-siyuan-plugin/index.js
-          test -f dist/univer-siyuan-plugin/es/univer.js
-          cd dist/univer-siyuan-plugin
-          zip -r ../../package.zip .
+          test -f dist/univer/plugin.json
+          test -f dist/univer/index.js
+          test -f dist/univer/es/univer.js
+          cd dist/univer
+          zip -r ../../univer.zip .
           cd ../..
-          unzip -t package.zip
+          unzip -t univer.zip
 
       - name: Create or update GitHub Release
         run: |
           if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
-            gh release upload "${GITHUB_REF_NAME}" package.zip --clobber
+            gh release upload "${GITHUB_REF_NAME}" univer.zip --clobber
           else
-            gh release create "${GITHUB_REF_NAME}" package.zip --generate-notes
+            gh release create "${GITHUB_REF_NAME}" univer.zip --generate-notes
           fi

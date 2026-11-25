@@ -22,7 +22,7 @@
             font-size: 12px;
         }
 
-        #univer-siyuan-plugin--tools {
+        #univer--tools {
             position: relative;
             z-index: 10000;
             display: flex;
@@ -58,22 +58,22 @@
             opacity: 0.6;
         }
 
-        #univer-siyuan-plugin--group-menu {
+        #univer--group-menu {
             position: relative;
         }
 
-        #univer-siyuan-plugin--group-menu summary {
+        #univer--group-menu summary {
             display: flex;
             align-items: center;
             list-style: none;
             user-select: none;
         }
 
-        #univer-siyuan-plugin--group-menu summary::-webkit-details-marker {
+        #univer--group-menu summary::-webkit-details-marker {
             display: none;
         }
 
-        #univer-siyuan-plugin--group-actions {
+        #univer--group-actions {
             position: absolute;
             top: 30px;
             left: 0;
@@ -87,7 +87,7 @@
             box-shadow: 0 3px 12px rgb(0 0 0 / 18%);
         }
 
-        #univer-siyuan-plugin--status {
+        #univer--status {
             overflow: hidden;
             max-width: 260px;
             color: #666;
@@ -95,7 +95,7 @@
             white-space: nowrap;
         }
 
-        #univer-siyuan-plugin--app {
+        #univer--app {
             flex: 1 1 auto;
             min-height: 0;
             overscroll-behavior: contain;
@@ -104,9 +104,9 @@
 </head>
 
 <body>
-    <div id="univer-siyuan-plugin--tools">
-        <label for="univer-siyuan-plugin--font">字体</label>
-        <select id="univer-siyuan-plugin--font" title="设置当前选区字体">
+    <div id="univer--tools">
+        <label for="univer--font">字体</label>
+        <select id="univer--font" title="设置当前选区字体">
             <option value="">选择字体</option>
             <option value="Arial">Arial</option>
             <option value="Calibri">Calibri</option>
@@ -117,11 +117,11 @@
             <option value="KaiTi">楷体</option>
             <option value="monospace">等宽字体</option>
         </select>
-        <button id="univer-siyuan-plugin--import" type="button">导入 Excel</button>
-        <button id="univer-siyuan-plugin--export" type="button">导出 Excel</button>
-        <details id="univer-siyuan-plugin--group-menu">
+        <button id="univer--import" type="button">导入 Excel</button>
+        <button id="univer--export" type="button">导出 Excel</button>
+        <details id="univer--group-menu">
             <summary>行列分组</summary>
-            <div id="univer-siyuan-plugin--group-actions">
+            <div id="univer--group-actions">
                 <button type="button" data-group="create-row">行：创建分组</button>
                 <button type="button" data-group="create-column">列：创建分组</button>
                 <button type="button" data-group="collapse-row">行：折叠</button>
@@ -133,18 +133,18 @@
                 <button type="button" data-group="expand-all">当前表全部展开</button>
             </div>
         </details>
-        <span id="univer-siyuan-plugin--status" role="status" aria-live="polite"></span>
-        <input id="univer-siyuan-plugin--file" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+        <span id="univer--status" role="status" aria-live="polite"></span>
+        <input id="univer--file" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
     </div>
-    <div id="univer-siyuan-plugin--app"></div>
+    <div id="univer--app"></div>
     <script>var process = { env: { NODE_ENV: "production" } }</script>
     <script type="module">
         const dev = import.meta.env?.MODE === 'development'
         if (dev) {
-            import('/src/univer-siyuan-plugin/univer.ts')
+            import('/src/univer/univer.ts')
         } else {
             // 生产环境下的动态导入，避免编译时加载
-            eval(`import('/plugins/univer-siyuan-plugin/es/univer.js')`)
+            eval(`import('/plugins/univer/es/univer.js')`)
         }
     </script>
 </body>

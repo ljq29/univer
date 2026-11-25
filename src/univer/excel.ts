@@ -292,7 +292,7 @@ export async function exportXlsx(snapshot: IWorkbookData): Promise<Blob> {
   if (!sheetId || !source) throw new Error('当前工作簿没有可导出的工作表');
 
   const workbook = new ExcelJS.Workbook();
-  workbook.creator = 'univer-siyuan-plugin';
+  workbook.creator = 'univer';
   workbook.created = new Date();
   const worksheet = workbook.addWorksheet(source.name || 'Sheet1');
 
