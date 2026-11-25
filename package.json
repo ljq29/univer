@@ -1,0 +1,68 @@
+{
+  "name": "univer-siyuan-plugin",
+  "version": "0.0.90",
+  "private": true,
+  "type": "module",
+  "description": "在思源笔记中嵌入可同步的 Univer 电子表格",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ljq29/univer-siyuan-plugin.git"
+  },
+  "author": "崮生",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "pnpm build:index && pnpm build:univer",
+    "build:index": "cross-env format=cjs vite build",
+    "build:univer": "cross-env fileName=univer.ts format=esm emptyOutDir=0 vite build"
+  },
+  "dependencies": {
+    "@univerjs/core": "0.22.0",
+    "@univerjs/design": "0.22.0",
+    "@univerjs/docs": "0.22.0",
+    "@univerjs/docs-ui": "0.22.0",
+    "@univerjs/engine-formula": "0.22.0",
+    "@univerjs/engine-render": "0.22.0",
+    "@univerjs/find-replace": "0.22.0",
+    "@univerjs/sheets": "0.22.0",
+    "@univerjs/sheets-filter": "0.22.0",
+    "@univerjs/sheets-filter-ui": "0.22.0",
+    "@univerjs/sheets-find-replace": "0.22.0",
+    "@univerjs/sheets-formula": "0.22.0",
+    "@univerjs/sheets-formula-ui": "0.22.0",
+    "@univerjs/sheets-hyper-link": "0.22.0",
+    "@univerjs/sheets-hyper-link-ui": "0.22.0",
+    "@univerjs/sheets-note": "0.22.0",
+    "@univerjs/sheets-note-ui": "0.22.0",
+    "@univerjs/sheets-numfmt": "0.22.0",
+    "@univerjs/sheets-numfmt-ui": "0.22.0",
+    "@univerjs/sheets-sort": "0.22.0",
+    "@univerjs/sheets-sort-ui": "0.22.0",
+    "@univerjs/sheets-thread-comment": "0.22.0",
+    "@univerjs/sheets-thread-comment-ui": "0.22.0",
+    "@univerjs/sheets-ui": "0.22.0",
+    "@univerjs/themes": "0.22.0",
+    "@univerjs/thread-comment": "0.22.0",
+    "@univerjs/thread-comment-ui": "0.22.0",
+    "@univerjs/ui": "0.22.0",
+    "exceljs": "4.4.0",
+    "vue": "3.5.34"
+  },
+  "devDependencies": {
+    "cross-env": "10.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "siyuan": "1.2.1",
+    "typescript": "6.0.3",
+    "vite": "8.0.12",
+    "vite-plugin-css-injected-by-js": "5.0.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "@univerjs/icons": "1.1.1",
+      "react": "18.3.1",
+      "react-dom": "18.3.1"
+    }
+  },
+  "packageManager": "pnpm@10.28.0+sha512.05df71d1421f21399e053fde567cea34d446fa02c76571441bfc1c7956e98e363088982d940465fd34480d4d90a0668bc12362f8aa88000a64e83d0b0e47be48"
+}

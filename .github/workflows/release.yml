@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify tag matches plugin version
+        run: |
+          test "${GITHUB_REF_NAME}" = "v$(node -p "require('./package.json').version")"
+          test "$(node -p "require('./package.json').version")" = "$(node -p "require('./src/univer-siyuan-plugin/plugin.json').version")"
+
+      - name: Build plugin
+        run: pnpm build
+
+      - name: Package plugin
+        run: |
+          test -f dist/univer-siyuan-plugin/plugin.json
+          test -f dist/univer-siyuan-plugin/index.js
+          test -f dist/univer-siyuan-plugin/es/univer.js
+          cd dist/univer-siyuan-plugin
+          zip -r ../../package.zip .
+          cd ../..
+          unzip -t package.zip
+
+      - name: Create or update GitHub Release
+        run: |
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            gh release upload "${GITHUB_REF_NAME}" package.zip --clobber
+          else
+            gh release create "${GITHUB_REF_NAME}" package.zip --generate-notes
+          fi
